@@ -4,7 +4,7 @@ project PC_Simulator extends "ada-lvgl/ada_lvgl.gpr" is
 
    for Languages use ("C");
 
-   for Source_Dirs use 
+   for Source_Dirs use
      LV_Drivers'Source_dirs &
    (".");
 
@@ -14,15 +14,13 @@ project PC_Simulator extends "ada-lvgl/ada_lvgl.gpr" is
    for Create_Missing_Dirs use "True";
 
    package Compiler is
-      for Switches ("C") use ("-DLV_CONF_INCLUDE_SIMPLE",
-                              "-g", "-O0", "-fPIC");
-
-      for Switches ("Ada") use ("-g", "-O0", "-fPIC");
+      for Switches ("C") use ("-DLV_CONF_INCLUDE_SIMPLE", "-fPIC");
+      for Switches ("Ada") use ("-fPIC");
    end Compiler;
 
    package Linker is
-      for Switches ("C") use ("-lSDL2", "-lm", "-g", "-O0", "-fPIC");
-      for Switches ("Ada") use ("-g", "-O0");
+      for Switches ("C") use ("-lSDL2", "-lm", "-fPIC");
    end Linker;
 
 end PC_Simulator;
+
