@@ -1,6 +1,6 @@
-with "../lv_drivers/lv_drivers.gpr";
+with "lv_drivers/lv_drivers.gpr";
 
-project PC_Simulator extends "../ada-lvgl/ada_lvgl.gpr" is
+project PC_Simulator extends "ada-lvgl/ada_lvgl.gpr" is
 
    for Languages use ("C");
 
