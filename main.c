@@ -11,15 +11,15 @@
 #include <unistd.h>
 #define SDL_MAIN_HANDLED        /*To fix SDL's "undefined reference to WinMain" issue*/
 #include <SDL2/SDL.h>
-#include "lvgl/lvgl.h"
-#include "lv_drivers/display/monitor.h"
-#include "lv_drivers/indev/mouse.h"
-#include "lv_drivers/indev/encoder.h"
-#include "lv_drivers/indev/keyboard.h"
-#include "lv_examples/lv_apps/demo/demo.h"
-#include "lv_examples/lv_apps/benchmark/benchmark.h"
-#include "lv_examples/lv_tests/lv_test_theme/lv_test_theme.h"
-#include "lv_examples/lv_tests/lv_test_group/lv_test_group.h"
+#include "lvgl.h"
+#include "monitor.h"
+#include "mouse.h"
+#include "encoder.h"
+#include "keyboard.h"
+/* #include "demo.h" */
+/* #include "benchmark.h" */
+/* #include "lv_test_theme.h" */
+/* #include "lv_test_group.h" */
 
 /*********************
  *      DEFINES
@@ -54,11 +54,15 @@ static void memory_monitor(void * param);
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
+extern void adainit(void);
+extern void ada_test_theme_1(lv_theme_t *th);
 
 int main(int argc, char ** argv)
 {
     (void) argc;    /*Unused*/
     (void) argv;    /*Unused*/
+
+    adainit();
 
     /*Initialize LittlevGL*/
     lv_init();
@@ -67,16 +71,17 @@ int main(int argc, char ** argv)
     hal_init();
 
     /*Load a demo*/
-    demo_create();
+    //ada_demo_create();
+    //demo_create();
 
     /*Try the benchmark to see how fast your GUI is*/
-//    benchmark_create();
+    //benchmark_create();
 
     /*Check the themes too*/
-//    lv_test_theme_1(lv_theme_night_init(220, NULL));
-
+    //lv_test_theme_1(lv_theme_night_init(220, NULL));
+    ada_test_theme_1(lv_theme_default_init(220, NULL));
     /* A keyboard and encoder (mouse wheel) control example*/
-//    lv_test_group_1();
+    //lv_test_group_1();
 
     while(1) {
         /* Periodically call the lv_task handler.
